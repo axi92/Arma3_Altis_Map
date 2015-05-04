@@ -1,6 +1,6 @@
 # Own
 
-*.png
+web/tiles/*.png
 
 #################
 ## Eclipse
