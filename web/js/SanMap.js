@@ -230,10 +230,12 @@ SanMap.createMap = function(canvas, mapTypes, zoom, center, repeating,
  * @param {Number} y The GTA:SA y-coordinate.
  * @return {Object} The newly created LatLng.
  */
+var coord_modifier_x = 30000/2; //normal 3000
+var coord_modifier_y = 30000/2; //normal 3000
 SanMap.getLatLngFromPos = function (x, y) {
     return typeof(x) == "object" 
-		? new google.maps.LatLng(x.y / 3000 * 90, x.x / 3000 * 90) 
-		: new google.maps.LatLng(y / 3000 * 90, x / 3000 * 90);
+		? new google.maps.LatLng(x.y / coord_modifier_x * 90, x.x / coord_modifier_x * 90) 
+		: new google.maps.LatLng(y / coord_modifier_y * 90, x / coord_modifier_y * 90);
 }
 
 /**
@@ -244,5 +246,5 @@ SanMap.getLatLngFromPos = function (x, y) {
  * @return {Object} An Object containing the GTA:SA coordinates.
  */
 SanMap.getPosFromLatLng = function (latLng) {
-    return {x: latLng.lng() * 3000 / 90, y: latLng.lat() * 3000 / 90};
+    return {x: (latLng.lng() * coord_modifier_x / 90)+coord_modifier_x, y: latLng.lat() * coord_modifier_y / 90+coord_modifier_y};
 }
